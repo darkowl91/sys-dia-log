@@ -45,7 +45,7 @@ class ListItem extends StatelessWidget {
       // trailing: const Icon(Icons.more_horiz),
       trailing: PopupMenuButton(
           icon: const Icon(Icons.more_horiz),
-          tooltip: FlutterI18n.translate(context, "measurement.edit"),
+          tooltip: FlutterI18n.translate(context, 'measurement.edit'),
           itemBuilder: (context) => [
                 PopupMenuItem(
                   child: ListTile(
