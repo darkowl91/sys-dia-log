@@ -1,0 +1,15 @@
+.DS_Store
+.project
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+logs/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+### VS Code ###
+.vscode/
+
+.settings/

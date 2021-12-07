@@ -1,0 +1,85 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'jacoco'
+    id 'io.freefair.lombok' version '6.2.0'
+}
+
+apply from: '../gradle/testcoverage.gradle'
+apply plugin: 'io.freefair.lombok'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
+
+group = 'by.sys-dia-log'
+version = 'v0.0.1'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+    set('testcontainersVersion', "1.15.3")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.5.4'
+
+    implementation 'org.springdoc:springdoc-openapi-webflux-core:1.5.10'
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.10'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server:2.5.4'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.4'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
+
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus:1.7.4'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+    testImplementation 'io.projectreactor:reactor-test:3.4.10'
+    testImplementation 'org.testcontainers:junit-jupiter:1.16.0'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+
+    implementation 'software.amazon.awssdk:dynamodb-enhanced:2.17.40'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootBuildImage {
+    imageName = "darkowl91/${rootProject.name}:${project.version}"
+    docker.publishRegistry {
+        url = 'https://hub.docker.com/'
+        username = System.getenv('DOCKER_HUB_USERNAME')
+        password = System.getenv('DOCKER_HUB_TOKEN')
+    }
+}
+
+springBoot {
+    buildInfo()
+}

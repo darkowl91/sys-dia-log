@@ -1,0 +1,74 @@
+name: sys-dia-log Branch Workflow
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+      - 'release*'
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download Amazon Corretto JDK 11
+        run: |
+          download_url="https://corretto.aws/downloads/resources/11.0.10.9.1/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz"
+          wget -O $RUNNER_TEMP/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz $download_url
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'jdkfile'
+          jdkFile: ${{ runner.temp }}/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz
+          java-version: '11.0'
+
+      - name: Gradle Test
+        run: ./gradlew check
+        env:
+          ENV_AUTH0_CLIENT_ID: ${{ secrets.ENV_AUTH0_CLIENT_ID }}
+          ENV_AUTH0_CLIENT_SECRET: ${{ secrets.ENV_AUTH0_CLIENT_SECRET }}
+          ENV_AUTH0_DOMAIN: ${{ secrets.ENV_AUTH0_DOMAIN }}
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+  test-flutter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download Amazon Corretto JDK 11
+        run: |
+          download_url="https://corretto.aws/downloads/resources/11.0.10.9.1/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz"
+          wget -O $RUNNER_TEMP/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz $download_url
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'jdkfile'
+          jdkFile: ${{ runner.temp }}/amazon-corretto-11.0.10.9.1-linux-x64.tar.gz
+          java-version: '11.0'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - name: Chek Flutter
+        working-directory: ./mobile
+        run: |
+          flutter pub get
+          flutter format --set-exit-if-changed .
+          flutter analyze .
+          flutter test

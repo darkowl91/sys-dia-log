@@ -1,0 +1,8 @@
+build/
+out/
+bin/
+.settings/
+
+.classpath
+.project
+/docs/api/http-client.private.env.json

@@ -1,0 +1,4 @@
+dynamodb:
+  endpoint: http://localhost:8000/
+  table: sys-dia-log
+  region: eu-north-1

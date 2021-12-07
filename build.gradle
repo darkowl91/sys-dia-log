@@ -1,0 +1,7 @@
+plugins {
+    id "org.sonarqube" version "3.1.1"
+}
+
+apply from: 'gradle/sonarqube.gradle'
+
+project.tasks['sonarqube'].dependsOn 'server:jacocoTestReport'

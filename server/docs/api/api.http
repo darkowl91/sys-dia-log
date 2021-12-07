@@ -1,0 +1,27 @@
+### create new measurement
+POST {{host}}/api/v1/measurements
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "bloodPressure": {
+    "systolic": 120,
+    "diastolic": 80
+  },
+  "pulse": {
+    "bpm": 84
+  }
+}
+
+### get all measurements starting from date
+GET {{host}}/api/v1/measurements?dateFrom=2021-04-14
+Accept: application/json
+Authorization: Bearer {{jwt}}
+
+### delete specified measurement by id
+DELETE {{host}}/api/v1/measurements/2021-09-30T20:26:17.695
+Authorization: Bearer {{jwt}}
+
+### api doc
+GET {{host}}/api-doc.yaml

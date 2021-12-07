@@ -1,0 +1,30 @@
+store:
+  dynamo:
+    endPoint: "http://localhost:8000/"
+
+springdoc:
+  use-management-port: true
+  show-actuator: true
+  paths-to-match:
+    - "/v1/**"
+    - "/measurements/**"
+    - "/actuator/**"
+
+server:
+  ssl:
+    enabled: false
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "health"
+          - "info"
+          - "prometheus"
+          - "openapi"
+          - "swaggerui"
+  server:
+    ssl:
+      enabled: false

@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: sys-dia-log
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: ${ENV_AUTH0_CLIENT_ID}
+            client-secret: ${ENV_AUTH0_CLIENT_SECRET}
+            scope:
+              - "openid"
+              - "profile"
+              - "email"
+        provider:
+          auth0:
+            issuer-uri: https://${ENV_AUTH0_DOMAIN}/
+      resourceserver:
+        jwt:
+          issuer-uri: https://${ENV_AUTH0_DOMAIN}/
+
+store:
+  dynamo:
+    table: "sys-dia-log"
+    region: "eu-north-1"
+
+springdoc:
+  api-docs:
+    path: "/api-doc"
+  paths-to-match:
+    - "/v1/**"
+    - "/measurements/**"
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "health"
+          - "info"
+          - "prometheus"
+
+server:
+  port: 8443
