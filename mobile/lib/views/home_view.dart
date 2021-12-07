@@ -38,7 +38,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: FloatingActionButton(
-        tooltip: FlutterI18n.translate(context, "measurement.add"),
+        tooltip: FlutterI18n.translate(context, 'measurement.add'),
         child: const Icon(Icons.add),
         onPressed: () => _navigateAndAddNewMeasurement(context),
       ),

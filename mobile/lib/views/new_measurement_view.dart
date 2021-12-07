@@ -80,7 +80,7 @@ class _NewMeasurementState extends State<NewMeasurementView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(
             context, MeasurementBuilder(_systolic, _diastolic, _pulse)),
-        tooltip: FlutterI18n.translate(context, "measurement.save"),
+        tooltip: FlutterI18n.translate(context, 'measurement.save'),
         child: const Icon(
           Icons.save,
         ),
