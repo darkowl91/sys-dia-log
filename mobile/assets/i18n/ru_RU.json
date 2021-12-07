@@ -1,14 +1,20 @@
 {
-  "app.title": "Sys Dia Log",
-  "new.measurement.created": "Добавоено новое измерение - {createdAt}.",
-  "add.measurement": "Добавить измерение",
-  "oops.no.data": "Нет двнных об измерениях.",
-  "systolic": "Систолическое",
-  "diastolic": "Диастолическое",
-  "pulse": "Пульс",
-  "pulse.bpm": "{bpm} уд/мин",
-  "hypertension": "Гипертония",
-  "save.measurement": "Сохранить измерение",
-  "edit.measurement": "Изменить измерение",
-  "delete.measurement": "Удалить измерение"
+  "title": "Sys Dia Log",
+  "error": "Нет двнных об измерениях.",
+  "pressure": {
+    "systolic": "Систолическое",
+    "diastolic": "Диастолическое",
+    "hypertension": "Гипертония"
+  },
+  "pulse": {
+    "name": "Пульс",
+    "unit": "{bpm} уд/мин"
+  },
+  "measurement": {
+    "created": "Добавоено новое измерение - {createdAt}.",
+    "add": "Добавить измерение",
+    "save": "Сохранить измерение",
+    "edit": "Изменить измерение",
+    "delete": "Удалить измерение"
+  }
 }
