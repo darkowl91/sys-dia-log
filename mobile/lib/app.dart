@@ -30,7 +30,7 @@ class SysDiaLogApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        supportedLocales: const [Locale("en"), Locale("ru")],
+        supportedLocales: const [Locale('en', 'US'), Locale('ru', 'RU')],
         routes: {
           HomeView.routeName: (context) => const HomeView(),
           NewMeasurementView.routeName: (context) => const NewMeasurementView()
