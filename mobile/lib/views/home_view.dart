@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/model/measurement.dart';
 import 'package:mobile/service/measurement_store.dart';
@@ -22,8 +23,13 @@ class HomeView extends StatelessWidget {
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(
-        content: Text(
-            "Created new Measurement - ${DateFormat.yMEd().format(measurement.createdAt.toLocal())}."),
+        content: I18nText(
+          'measurement.created',
+          translationParams: {
+            'createdAt':
+                DateFormat.yMEd().format(measurement.createdAt.toLocal())
+          },
+        ),
       ));
   }
 
@@ -32,7 +38,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Add Measurement',
+        tooltip: FlutterI18n.translate(context, 'measurement.add'),
         child: const Icon(Icons.add),
         onPressed: () => _navigateAndAddNewMeasurement(context),
       ),
@@ -44,7 +50,7 @@ class HomeView extends StatelessWidget {
               ? const CircularProgressIndicator()
               : snap.hasData
                   ? _buildCustomScrollView()
-                  : const Text('Oops! No Measurement Data Found.'),
+                  : I18nText('error'),
         ),
       ),
     );

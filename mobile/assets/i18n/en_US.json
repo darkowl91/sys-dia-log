@@ -1,0 +1,20 @@
+{
+  "title": "Sys Dia Log",
+  "error": "Oops! No Measurement Data Found.",
+  "pressure": {
+    "systolic": "Systolic",
+    "diastolic": "Diastolic",
+    "hypertension": "Hypertension"
+  },
+  "pulse": {
+    "name": "Pulse",
+    "unit": "{bpm} BPM"
+  },
+  "measurement": {
+    "created": "Created new Measurement - {createdAt}.",
+    "add": "Add Measurement",
+    "save": "Save Measurement",
+    "edit": "Edit Measurement",
+    "delete": "Delete Measurement"
+  }
+}

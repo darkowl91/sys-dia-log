@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:mobile/model/measurement.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -30,7 +31,7 @@ class _NewMeasurementState extends State<NewMeasurementView> {
                 Expanded(
                     child: Column(
                   children: [
-                    const Text('Systolic'),
+                    I18nText('pressure.systolic'),
                     NumberPicker(
                         minValue: 20,
                         maxValue: 200,
@@ -43,7 +44,7 @@ class _NewMeasurementState extends State<NewMeasurementView> {
                 Expanded(
                     child: Column(
                   children: [
-                    const Text('Diastolic'),
+                    I18nText('pressure.diastolic'),
                     NumberPicker(
                         axis: Axis.vertical,
                         minValue: 20,
@@ -61,7 +62,7 @@ class _NewMeasurementState extends State<NewMeasurementView> {
                 Expanded(
                     child: Column(
                   children: [
-                    const Text('Pulse'),
+                    I18nText('pulse.name'),
                     NumberPicker(
                         minValue: 20,
                         maxValue: 220,
@@ -79,7 +80,7 @@ class _NewMeasurementState extends State<NewMeasurementView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(
             context, MeasurementBuilder(_systolic, _diastolic, _pulse)),
-        tooltip: 'Save Measurement',
+        tooltip: FlutterI18n.translate(context, 'measurement.save'),
         child: const Icon(
           Icons.save,
         ),
