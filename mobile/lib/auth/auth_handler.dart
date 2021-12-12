@@ -5,7 +5,8 @@ import 'package:chopper/chopper.dart';
 class AuthHandler implements RequestInterceptor {
   @override
   Future<Request> onRequest(Request request) async {
-    const String jwt = "";
+    const String jwt =
+        "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImlDWTQ4bmNJdDY5Skd2cU1tSHhoMyJ9.eyJpc3MiOiJodHRwczovL2Rldi1hdDZyaHF4Mi51cy5hdXRoMC5jb20vIiwic3ViIjoiWDJ3SnF3U3dJc0tab0E2dG5mcEs5a3Q4eEo5VE9SaTVAY2xpZW50cyIsImF1ZCI6Ii9hcGkvdjEvbWVhc3VyZW1lbnRzIiwiaWF0IjoxNjM5MzMwNjEwLCJleHAiOjE2Mzk0MTcwMTAsImF6cCI6Ilgyd0pxd1N3SXNLWm9BNnRuZnBLOWt0OHhKOVRPUmk1IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.UB5TId7jubQ5o7Vfa1hHxPTOcpTkum5ubfp4lhjmI2lkRcCR-Wcbn54Hq1hI832vRKnqI-8GkmrlH_0jVwlOQJTa2wcD0tcFD9O_rkvOMBclrgyUQY2j7eyyfBjRicRCRgjD1innjbrIH9rkOOkaB5R-psus6HjhNClbXkORRLmUZs_jkX38A5sLFjdFnDjHtbb2rxY0LOwpBHRW3Ej1ZjrQJu34h73ChVHFCoH9G8PRTUEvwkls3tXqekbtxXCs26yqNn46UHcVEWR8l5q8IgSZglHN0tbFOBsZHbIp4esi3-ilzkgGZBAaAIoONP5NcEwI9fSVJWjmOCMQyB_jng";
     return applyHeader(request, 'authorization', "Bearer $jwt");
   }
 }

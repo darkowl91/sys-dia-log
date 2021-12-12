@@ -81,7 +81,7 @@ public class MeasurementHandler {
     var prmDateFrom =
         req.queryParam("dateFrom")
             .filter(Predicate.not(String::isBlank))
-            .map(s -> tryParse(DateTimeFormatter.ISO_DATE_TIME, s))
+            .map(s -> tryParse(DateTimeFormatter.ISO_LOCAL_DATE, s))
             .map(LocalDate::from)
             .map(LocalDate::atStartOfDay)
             .orElseThrow(() -> new ServerWebInputException("invalid dateFrom parameter"));

@@ -8,7 +8,7 @@ part 'measurement.g.dart';
 @JsonSerializable()
 class Measurement {
   @JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  late DateTime createdAt;
 
   @JsonKey(name: 'bloodPressure')
   final BloodPressure bloodPressure;
@@ -24,9 +24,8 @@ class Measurement {
 
   Map<String, dynamic> toJson() => _$MeasurementToJson(this);
 
-  Measurement._builder(MeasurementBuilder builder, {DateTime? createdAt})
-      : createdAt = createdAt ?? DateTime.now().toUtc(),
-        bloodPressure = BloodPressure(builder._systolic, builder._diastolic),
+  Measurement._builder(MeasurementBuilder builder)
+      : bloodPressure = BloodPressure(builder._systolic, builder._diastolic),
         pulse = Pulse(builder._pulseBpm);
 }
 
@@ -40,7 +39,7 @@ class MeasurementBuilder {
         _diastolic = diastolic,
         _pulseBpm = bpm;
 
-  Measurement build({DateTime? createdAt}) {
-    return Measurement._builder(this, createdAt: createdAt);
+  Measurement build() {
+    return Measurement._builder(this);
   }
 }

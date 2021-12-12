@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile/model/measurement.dart';
 
 import 'measurement_service.dart';
@@ -8,7 +9,7 @@ class MeasurementStore extends ChangeNotifier {
 
   late List<Measurement> _data = [];
 
-  List<Measurement> get data => List.of(_data);
+  List<Measurement> get data => _data;
 
   Future<Measurement> add(MeasurementBuilder builder) async {
     return _apiService
@@ -27,11 +28,13 @@ class MeasurementStore extends ChangeNotifier {
 
   Future<List<Measurement>> load() async {
     return _apiService
-        .getMeasurements(DateTime.now()
-            .subtract(const Duration(days: 7))
-            .toUtc()
-            .toIso8601String())
+        .getMeasurements(_lastNDays(days: 7))
         .then((resp) => _data = resp.body!)
         .whenComplete(() => notifyListeners());
+  }
+
+  String _lastNDays({int days = 0}) {
+    final date = DateTime.now().toUtc().subtract(Duration(days: days));
+    return DateFormat("yyyy-MM-dd").format(date);
   }
 }
