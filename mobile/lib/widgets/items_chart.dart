@@ -10,9 +10,8 @@ class ItemsChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5.0),
-      // width: 340,
-      height: 170,
+      margin: const EdgeInsets.all(0.1),
+      height: 180,
       child: TimeSeriesChart(
         _buildSeriesList(data),
         primaryMeasureAxis: const NumericAxisSpec(renderSpec: NoneRenderSpec()),
