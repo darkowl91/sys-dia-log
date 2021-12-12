@@ -17,7 +17,7 @@ class _$MeasurementService extends MeasurementService {
   final definitionType = MeasurementService;
 
   @override
-  Future<Response<List<Measurement>>> getMeasurements(DateTime dateFrom) {
+  Future<Response<List<Measurement>>> getMeasurements(String dateFrom) {
     final $url = '/measurements';
     final $params = <String, dynamic>{'dateFrom': dateFrom};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -33,7 +33,7 @@ class _$MeasurementService extends MeasurementService {
   }
 
   @override
-  Future<Response<dynamic>> deleteMeasurement(DateTime createdAt) {
+  Future<Response<dynamic>> deleteMeasurement(String createdAt) {
     final $url = '/measurements/${createdAt}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);

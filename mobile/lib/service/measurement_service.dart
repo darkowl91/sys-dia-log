@@ -22,16 +22,12 @@ abstract class MeasurementService extends ChopperService {
 
   @Get()
   Future<Response<List<Measurement>>> getMeasurements(
-    @Query("dateFrom") DateTime dateFrom,
-  );
+      @Query("dateFrom") String dateFrom);
 
   @Post()
   Future<Response<Measurement>> createMeasurement(
-    @Body() Measurement measurement,
-  );
+      @Body() Measurement measurement);
 
   @Delete(path: "/{id}")
-  Future<Response> deleteMeasurement(
-    @Path("id") DateTime createdAt,
-  );
+  Future<Response> deleteMeasurement(@Path("id") String createdAt);
 }

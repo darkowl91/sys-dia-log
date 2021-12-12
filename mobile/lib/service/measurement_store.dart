@@ -20,15 +20,17 @@ class MeasurementStore extends ChangeNotifier {
 
   void remove(Measurement measurement) async {
     _apiService
-        .deleteMeasurement(measurement.createdAt)
+        .deleteMeasurement(measurement.createdAt.toUtc().toIso8601String())
         .then((resp) => {if (resp.isSuccessful) _data.remove(measurement)})
         .whenComplete(() => notifyListeners());
   }
 
   Future<List<Measurement>> load() async {
     return _apiService
-        .getMeasurements(
-            DateTime.now().subtract(const Duration(days: 7)).toUtc())
+        .getMeasurements(DateTime.now()
+            .subtract(const Duration(days: 7))
+            .toUtc()
+            .toIso8601String())
         .then((resp) => _data = resp.body!)
         .whenComplete(() => notifyListeners());
   }
