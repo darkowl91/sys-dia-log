@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
           'measurement.created',
           translationParams: {
             'createdAt':
-                DateFormat.yMEd().format(measurement.createdAt.toLocal())
+                DateFormat.yMEd().format(measurement.createdAt!.toLocal())
           },
         ),
       ));

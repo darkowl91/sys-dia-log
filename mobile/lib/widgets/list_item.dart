@@ -28,7 +28,7 @@ class ListItem extends StatelessWidget {
       isThreeLine: true,
       subtitle: Row(
         children: [
-          Text(DateFormat.yMEd().format(item.createdAt.toLocal())),
+          Text(DateFormat.yMEd().format(item.createdAt!.toLocal())),
           const Spacer(),
           Text("${item.pulse.bpm} BPM"),
           const Spacer()

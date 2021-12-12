@@ -7,8 +7,8 @@ part 'measurement.g.dart';
 
 @JsonSerializable()
 class Measurement {
-  @JsonKey(name: 'createdAt')
-  late DateTime createdAt;
+  @JsonKey(name: 'createdAt', includeIfNull: false)
+  DateTime? createdAt;
 
   @JsonKey(name: 'bloodPressure')
   final BloodPressure bloodPressure;

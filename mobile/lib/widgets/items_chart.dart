@@ -31,14 +31,14 @@ class ItemsChart extends StatelessWidget {
           data: items,
           labelAccessorFn: (Measurement it, _) =>
               it.bloodPressure.diastolic.toString(),
-          domainFn: (Measurement it, _) => it.createdAt.toLocal(),
+          domainFn: (Measurement it, _) => it.createdAt!.toLocal(),
           measureFn: (Measurement it, _) => it.bloodPressure.diastolic),
       Series(
           id: 'systolic',
           data: items,
           labelAccessorFn: (Measurement it, _) =>
               it.bloodPressure.systolic.toString(),
-          domainFn: (Measurement it, _) => it.createdAt.toLocal(),
+          domainFn: (Measurement it, _) => it.createdAt!.toLocal(),
           measureFn: (Measurement it, _) => it.bloodPressure.systolic),
     ];
   }
