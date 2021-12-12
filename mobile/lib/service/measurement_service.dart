@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/auth/auth_handler.dart';
 import 'package:mobile/model/measurement.dart';
-import 'package:mobile/service/converter/JsonSerializableConverter.dart';
+import 'package:mobile/service/converter/json_serializable_converter.dart';
 
 part 'measurement_service.chopper.dart';
 
