@@ -21,7 +21,8 @@ class MeasurementStore extends ChangeNotifier {
 
   void remove(Measurement measurement) async {
     _apiService
-        .deleteMeasurement(measurement.createdAt.toUtc().toIso8601String())
+        .deleteMeasurement(DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+            .format(measurement.createdAt))
         .then((resp) => {if (resp.isSuccessful) _data.remove(measurement)})
         .whenComplete(() => notifyListeners());
   }

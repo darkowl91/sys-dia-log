@@ -18,9 +18,7 @@ class Measurement {
 
   Measurement(this.createdAt, this.bloodPressure, this.pulse);
 
-  factory Measurement.fromJson(final Map<String, dynamic> json) {
-    return _$MeasurementFromJson(json);
-  }
+  static const fromJsonFactory = _$MeasurementFromJson;
 
   Map<String, dynamic> toJson() => _$MeasurementToJson(this);
 

@@ -72,7 +72,6 @@ public class MeasurementHandler {
               measurement.setCreatedAt(prmId);
               return measurement;
             })
-        .doOnNext(this::validate)
         .map(measurementStore::delete)
         .then(noContent().build());
   }

@@ -1,6 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/auth/auth_handler.dart';
 import 'package:mobile/model/measurement.dart';
+import 'package:mobile/service/converter/JsonSerializableConverter.dart';
 
 part 'measurement_service.chopper.dart';
 
@@ -13,7 +14,9 @@ abstract class MeasurementService extends ChopperService {
         defaultValue: 'http://localhost:8080/api/v1',
       ),
       services: [_$MeasurementService()],
-      converter: const JsonConverter(),
+      converter: const JsonSerializableConverter(factories: {
+        Measurement: Measurement.fromJsonFactory,
+      }),
       errorConverter: const JsonConverter(),
       interceptors: [AuthHandler(), HttpLoggingInterceptor()],
     );
