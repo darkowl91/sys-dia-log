@@ -26,7 +26,7 @@ class SysDiaLogApp extends StatelessWidget {
           FlutterI18nDelegate(
               keySeparator: '.',
               translationLoader: FileTranslationLoader(
-                  basePath: 'i18n', useCountryCode: true)),
+                  basePath: 'assets/i18n', useCountryCode: true)),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
