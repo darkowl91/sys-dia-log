@@ -18,7 +18,8 @@ class HomeView extends StatelessWidget {
         .pushNamed(NewMeasurementView.routeName) as MeasurementBuilder;
 
     final measurement =
-        Provider.of<MeasurementStore>(context, listen: false).add(buildResult);
+        await Provider.of<MeasurementStore>(context, listen: false)
+            .add(buildResult);
 
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
