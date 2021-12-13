@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'items_chart.dart';
 import 'list_item.dart';
 
-class ItemsListView extends StatelessWidget {
-  const ItemsListView({Key? key}) : super(key: key);
+class ItemsList extends StatelessWidget {
+  const ItemsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

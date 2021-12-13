@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile/model/measurement.dart';
 import 'package:mobile/service/measurement_store.dart';
 import 'package:mobile/views/new_measurement_view.dart';
-import 'package:mobile/widgets/items_list_view.dart';
+import 'package:mobile/widgets/items_list.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
           builder: (_, snap) => snap.connectionState == ConnectionState.waiting
               ? const CircularProgressIndicator()
               : snap.hasData
-                  ? const ItemsListView()
+                  ? const ItemsList()
                   : I18nText('error'),
         ),
       ),
