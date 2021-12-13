@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile/model/measurement.dart';
 import 'package:mobile/service/measurement_store.dart';
 import 'package:mobile/views/new_measurement_view.dart';
-import 'package:mobile/widgets/items_chart.dart';
-import 'package:mobile/widgets/list_item.dart';
+import 'package:mobile/widgets/items_list_view.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
@@ -18,7 +17,8 @@ class HomeView extends StatelessWidget {
         .pushNamed(NewMeasurementView.routeName) as MeasurementBuilder;
 
     final measurement =
-        Provider.of<MeasurementStore>(context, listen: false).add(buildResult);
+        await Provider.of<MeasurementStore>(context, listen: false)
+            .add(buildResult);
 
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
           'measurement.created',
           translationParams: {
             'createdAt':
-                DateFormat.yMEd().format(measurement.createdAt.toLocal())
+                DateFormat.yMEd().format(measurement.createdAt!.toLocal())
           },
         ),
       ));
@@ -49,31 +49,10 @@ class HomeView extends StatelessWidget {
           builder: (_, snap) => snap.connectionState == ConnectionState.waiting
               ? const CircularProgressIndicator()
               : snap.hasData
-                  ? _buildCustomScrollView()
+                  ? const ItemsListView()
                   : I18nText('error'),
         ),
       ),
     );
-  }
-
-  Widget _buildCustomScrollView() {
-    return Consumer<MeasurementStore>(builder: (context, store, child) {
-      return CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 280,
-            collapsedHeight: 180,
-            flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true, title: ItemsChart(store.data)),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (_, i) => ListItem(store.data[i]),
-                childCount: store.data.length),
-          )
-        ],
-      );
-    });
   }
 }

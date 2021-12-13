@@ -7,14 +7,24 @@ part of 'measurement.dart';
 // **************************************************************************
 
 Measurement _$MeasurementFromJson(Map<String, dynamic> json) => Measurement(
-      DateTime.parse(json['createdAt'] as String),
+      json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
       BloodPressure.fromJson(json['bloodPressure'] as Map<String, dynamic>),
       Pulse.fromJson(json['pulse'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MeasurementToJson(Measurement instance) =>
-    <String, dynamic>{
-      'createdAt': instance.createdAt.toIso8601String(),
-      'bloodPressure': instance.bloodPressure,
-      'pulse': instance.pulse,
-    };
+Map<String, dynamic> _$MeasurementToJson(Measurement instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
+  val['bloodPressure'] = instance.bloodPressure;
+  val['pulse'] = instance.pulse;
+  return val;
+}
