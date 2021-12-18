@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mobile/service/measurement_service.dart';
 import 'package:mobile/service/measurement_store.dart';
 import 'package:mobile/views/home_view.dart';
 import 'package:mobile/views/new_measurement_view.dart';
@@ -12,7 +13,10 @@ class SysDiaLogApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => MeasurementStore())],
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => MeasurementStore(MeasurementService.create()))
+      ],
       child: MaterialApp(
         title: 'Sys Dia Log',
         restorationScopeId: 'sys_dia_log_app_id',

@@ -10,9 +10,10 @@ class MeasurementStore extends ChangeNotifier {
 
   static final DateFormat isoLocalDate = DateFormat("yyyy-MM-dd");
 
-  final MeasurementService _apiService = MeasurementService.create();
-
+  final MeasurementService _apiService;
   late List<Measurement> _data = [];
+
+  MeasurementStore(this._apiService);
 
   List<Measurement> get data => _data;
 
