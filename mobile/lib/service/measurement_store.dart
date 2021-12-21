@@ -20,7 +20,7 @@ class MeasurementStore extends ChangeNotifier {
   Future<Measurement> add(MeasurementBuilder builder) async {
     return _apiService
         .createMeasurement(builder.build())
-        .then((resp) => _data.insert(0, resp.body!))
+        .then((resp) => {if (resp.isSuccessful) _data.insert(0, resp.body!)})
         .then((_) => _data[0])
         .whenComplete(() => notifyListeners());
   }
