@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
@@ -20,13 +21,25 @@ public class Measurement implements Serializable {
 
   private static final long serialVersionUID = -1442236944551556338L;
 
-  @JsonIgnore @NotBlank private String userId;
+  @JsonIgnore
+  @NotBlank
+  @Schema(description = "User id")
+  private String userId;
 
   @NotNull
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  @Schema(
+      description = "Date and time of measurement",
+      example = "2020-01-01T00:00:00",
+      format = "date-time")
   private LocalDateTime createdAt;
 
-  @Valid @NotNull private BloodPressure bloodPressure;
+  @Valid
+  @NotNull
+  @Schema(required = true)
+  private BloodPressure bloodPressure;
 
-  @Valid private Pulse pulse;
+  @Valid
+  @Schema(required = false)
+  private Pulse pulse;
 }
